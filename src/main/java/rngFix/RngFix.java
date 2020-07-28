@@ -23,11 +23,6 @@ public class RngFix implements
 
     public static final Logger logger = LogManager.getLogger(RngFix.class.getName());
 
-    //mod settings
-    private static Properties defaultSettings = new Properties();
-    private static final String health_limit_settings = "noHealthLimit";
-    public static boolean healthLimit = false;
-
     private static final String MODNAME = "Better Altar";
     private static final String AUTHOR = "Nichilas";
     private static final String DESCRIPTION = "A mod to make the Forgotten Altar Event better";
@@ -38,16 +33,6 @@ public class RngFix implements
 
     public RngFix() {
         BaseMod.subscribe(this);
-
-        logger.info("Adding mod settings");
-        defaultSettings.setProperty(health_limit_settings, "FALSE");
-        try {
-            SpireConfig config = new SpireConfig("rngFix", "rngFixConfig", defaultSettings);
-            config.load();
-            healthLimit = config.getBool(health_limit_settings);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static void initialize() {
@@ -63,25 +48,6 @@ public class RngFix implements
         Texture badgeTexture = TextureLoader.getTexture(BADGE_IMAGE);
         ModPanel settingsPanel = new ModPanel();
 
-        ModLabeledToggleButton ascLimitButton = new ModLabeledToggleButton("Toggles something",
-                350.0f, 750.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
-                healthLimit,
-                settingsPanel,
-                (label) -> {},
-                (button) -> {
-
-                    healthLimit = button.enabled;
-                    try {
-                        SpireConfig config = new SpireConfig("rngFix", "rngFixConfig", defaultSettings);
-                        config.setBool(health_limit_settings, healthLimit);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-
-
-        settingsPanel.addUIElement(ascLimitButton);
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
     }

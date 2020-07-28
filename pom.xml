@@ -6,7 +6,7 @@
 
     <groupId>rngFix</groupId>
     <artifactId>rngFix</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <name>rngFix</name>
     <description>Fixes inherent correlation issues from the Random Number Generator!</description>
 
@@ -41,13 +41,6 @@
             <version>${BaseMod.version}</version>
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.evacipated.cardcrawl.mod</groupId>
-            <artifactId>StSLib</artifactId>
-            <version>${StSLib.version}</version>
-            <scope>system</scope>
-            <systemPath>${Steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
     </dependencies>
 
