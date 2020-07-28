@@ -1,0 +1,12 @@
+{
+  "modid": "rngFix",
+  "name": "RNG Fix",
+  "author_list": ["Nichilas"],
+  "description": "Fixes inherent correlation issues from the Random Number Generator!",
+  "version": "${project.version}",
+  "sts_version": "${SlayTheSpire.version}",
+  "mts_version": "${ModTheSpire.version}",
+  "dependencies": ["basemod", "stslib"],
+  "update_json": ""
+}
+
