@@ -16,6 +16,7 @@ public class seedFixPatch {
 
     public static class generatePatch {
         public static void Postfix(){
+            /*
             RngFix.logger.info("old seeds:\n");
 
             RngFix.logger.info(AbstractDungeon.monsterRng.random() + "\n");
@@ -25,7 +26,9 @@ public class seedFixPatch {
             RngFix.logger.info(AbstractDungeon.treasureRng.random() + "\n");
             RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
             RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
+            */
 
+            RngFix.logger.info("Generating unique seeds..."); // seed: 7 proves uniqueness
             Random gen = new Random(Settings.seed);
 
             AbstractDungeon.monsterRng = new Random(gen.random.nextLong());
@@ -36,6 +39,7 @@ public class seedFixPatch {
             AbstractDungeon.relicRng = new Random(gen.random.nextLong());
             AbstractDungeon.potionRng = new Random(gen.random.nextLong());
 
+            /*
             RngFix.logger.info("new seeds:\n");
 
             RngFix.logger.info(AbstractDungeon.monsterRng.random() + "\n");
@@ -45,6 +49,7 @@ public class seedFixPatch {
             RngFix.logger.info(AbstractDungeon.treasureRng.random() + "\n");
             RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
             RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
+            */
 
         }
     }
