@@ -80,7 +80,10 @@ public class seedFixPatch {
 
     @SpirePatch(
             clz = AbstractDungeon.class,
-            method = "loadSeeds"
+            method = "nextRoomTransition",
+            paramtypez = {
+                    SaveFile.class
+            }
     )
 
     public static class roomTransPatch {
@@ -92,13 +95,13 @@ public class seedFixPatch {
             Random gen = new Random(Settings.seed);
 
             //to queue to the correct seed count
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.monster_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.event_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.merchant_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.card_random_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.treasure_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.relic_seed_count);
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong(), save.potion_seed_count);
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
             //to queue to the correct seed count
 
             AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong() + (long)floorNum);
