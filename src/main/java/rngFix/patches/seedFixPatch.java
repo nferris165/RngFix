@@ -14,7 +14,7 @@ import rngFix.RngFix;
 
 import java.util.ArrayList;
 
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.floorNum;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 
 
 public class seedFixPatch {
@@ -26,23 +26,23 @@ public class seedFixPatch {
     public static class generatePatch {
         public static void Postfix(){
 
-            RngFix.logger.info("Generating unique seeds..."); // seed: 7 proves uniqueness
+            RngFix.logger.info("Generating unique seeds...");
             Random gen = new Random(Settings.seed);
 
 
-            AbstractDungeon.monsterRng = new Random(gen.random.nextLong());     // 0
-            AbstractDungeon.eventRng = new Random(gen.random.nextLong());       // 1
-            AbstractDungeon.merchantRng = new Random(gen.random.nextLong());    // 2
-            AbstractDungeon.cardRng = new Random(gen.random.nextLong());        // 3
-            AbstractDungeon.treasureRng = new Random(gen.random.nextLong());    // 4
-            AbstractDungeon.relicRng = new Random(gen.random.nextLong());       // 5
-            AbstractDungeon.potionRng = new Random(gen.random.nextLong());      // 6
+            monsterRng = new Random(gen.random.nextLong());     // 0
+            eventRng = new Random(gen.random.nextLong());       // 1
+            merchantRng = new Random(gen.random.nextLong());    // 2
+            cardRng = new Random(gen.random.nextLong());        // 3
+            treasureRng = new Random(gen.random.nextLong());    // 4
+            relicRng = new Random(gen.random.nextLong());       // 5
+            potionRng = new Random(gen.random.nextLong());      // 6
 
-            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());   // 7
-            AbstractDungeon.aiRng = new Random(gen.random.nextLong());          // 8
-            AbstractDungeon.shuffleRng = new Random(gen.random.nextLong());     // 9
-            AbstractDungeon.cardRandomRng = new Random(gen.random.nextLong());  // 10
-            AbstractDungeon.miscRng = new Random(gen.random.nextLong());        // 11
+            monsterHpRng = new Random(gen.random.nextLong());   // 7
+            aiRng = new Random(gen.random.nextLong());          // 8
+            shuffleRng = new Random(gen.random.nextLong());     // 9
+            cardRandomRng = new Random(gen.random.nextLong());  // 10
+            miscRng = new Random(gen.random.nextLong());        // 11
 
             /*
             RngFix.logger.info("new seeds:\n");
@@ -69,13 +69,13 @@ public class seedFixPatch {
             RngFix.logger.info("Generating unique seeds...");
             Random gen = new Random(Settings.seed);
 
-            AbstractDungeon.monsterRng = new Random(gen.random.nextLong(), save.monster_seed_count);
-            AbstractDungeon.eventRng = new Random(gen.random.nextLong(), save.event_seed_count);
-            AbstractDungeon.merchantRng = new Random(gen.random.nextLong(), save.merchant_seed_count);
-            AbstractDungeon.cardRng = new Random(gen.random.nextLong(), save.card_random_seed_count);
-            AbstractDungeon.treasureRng = new Random(gen.random.nextLong(), save.treasure_seed_count);
-            AbstractDungeon.relicRng = new Random(gen.random.nextLong(), save.relic_seed_count);
-            AbstractDungeon.potionRng = new Random(gen.random.nextLong(), save.potion_seed_count);
+            monsterRng = new Random(gen.random.nextLong(), save.monster_seed_count);
+            eventRng = new Random(gen.random.nextLong(), save.event_seed_count);
+            merchantRng = new Random(gen.random.nextLong(), save.merchant_seed_count);
+            cardRng = new Random(gen.random.nextLong(), save.card_seed_count);
+            treasureRng = new Random(gen.random.nextLong(), save.treasure_seed_count);
+            relicRng = new Random(gen.random.nextLong(), save.relic_seed_count);
+            potionRng = new Random(gen.random.nextLong(), save.potion_seed_count);
         }
     }
 
@@ -119,7 +119,7 @@ public class seedFixPatch {
         public static void Insert2(AbstractDungeon __instance, SaveFile save, @ByRef Random[] eventRngDuplicate){
 
             Random gen = new Random(Settings.seed, 1);
-            eventRngDuplicate[0] = new Random(gen.random.nextLong(), AbstractDungeon.eventRng.counter);
+            eventRngDuplicate[0] = new Random(gen.random.nextLong(), eventRng.counter);
         }
     }
 
