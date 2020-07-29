@@ -44,17 +44,17 @@ public class seedFixPatch {
             cardRandomRng = new Random(gen.random.nextLong());  // 10
             miscRng = new Random(gen.random.nextLong());        // 11
 
-            /*
-            RngFix.logger.info("new seeds:\n");
 
-            RngFix.logger.info(AbstractDungeon.monsterRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.eventRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.merchantRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.cardRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.treasureRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
-            */
+//            RngFix.logger.info("new seeds:\n");
+//
+//            RngFix.logger.info(monsterRng.random.seed0 + "\n");
+//            RngFix.logger.info(AbstractDungeon.eventRng.random() + "\n");
+//            RngFix.logger.info(AbstractDungeon.merchantRng.random() + "\n");
+//            RngFix.logger.info(AbstractDungeon.cardRng.random() + "\n");
+//            RngFix.logger.info(AbstractDungeon.treasureRng.random() + "\n");
+//            RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
+//            RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
+
         }
     }
 
