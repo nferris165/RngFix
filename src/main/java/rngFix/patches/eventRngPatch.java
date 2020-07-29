@@ -24,7 +24,7 @@ public class eventRngPatch {
                 localvars = {"eventRngDuplicate"}
         )
         public static void Insert(EventRoom __instance, @ByRef Random[] eventRngDuplicate){
-            Random gen = new Random(Settings.seed, 1);
+            Random gen = new Random(Settings.seed, 14);
             eventRngDuplicate[0] = new Random(gen.random.nextLong(), AbstractDungeon.eventRng.counter);
         }
     }
