@@ -118,7 +118,7 @@ public class seedFixPatch {
         )
         public static void Insert2(AbstractDungeon __instance, SaveFile save, @ByRef Random[] eventRngDuplicate){
 
-            Random gen = new Random(Settings.seed, 14);
+            Random gen = new Random(Settings.seed, 1);
             eventRngDuplicate[0] = new Random(gen.random.nextLong(), eventRng.counter);
         }
     }
