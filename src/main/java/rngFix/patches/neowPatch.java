@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.EventRoom;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -18,21 +17,44 @@ public class neowPatch {
             method = "blessing"
     )
 
-    public static class generatePatch {
+    public static class blessingPatch {
         @SpireInsertPatch(
-                locator = eventRngPatch.Locator.class,
-                localvars = {"rng"}
+                locator = Locator.class
         )
-        public static void Insert(EventRoom __instance, @ByRef Random[] rng){
+        public static void Insert(NeowEvent __instance){
             Random gen = new Random(Settings.seed, 13);
-            rng[0] = new Random(gen.random.nextLong(), AbstractDungeon.eventRng.counter);
+            NeowEvent.rng = new Random(gen.random.nextLong());
         }
     }
 
-    public static class Locator extends SpireInsertLocator {
+    @SpirePatch(
+            clz = NeowEvent.class,
+            method = "dailyBlessing"
+    )
+
+    public static class dailyPatch {
+        @SpireInsertPatch(
+                locator = Locator2.class
+        )
+        public static void Insert(NeowEvent __instance){
+            Random gen = new Random(Settings.seed, 13);
+            NeowEvent.rng = new Random(gen.random.nextLong());
+        }
+    }
+
+    private static class Locator extends SpireInsertLocator {
         public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
             Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractDungeon.class, "bossCount");
             return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher);
         }
     }
+
+    private static class Locator2 extends SpireInsertLocator {
+        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+            Matcher finalMatcher = new Matcher.MethodCallMatcher(NeowEvent.class, "dismissBubble");
+            return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher);
+        }
+    }
+
+
 }
