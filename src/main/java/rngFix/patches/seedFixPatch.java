@@ -16,17 +16,6 @@ public class seedFixPatch {
 
     public static class generatePatch {
         public static void Postfix(){
-            /*
-            RngFix.logger.info("old seeds:\n");
-
-            RngFix.logger.info(AbstractDungeon.monsterRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.eventRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.merchantRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.cardRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.treasureRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
-            RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
-            */
 
             RngFix.logger.info("Generating unique seeds..."); // seed: 7 proves uniqueness
             Random gen = new Random(Settings.seed);
@@ -39,6 +28,12 @@ public class seedFixPatch {
             AbstractDungeon.relicRng = new Random(gen.random.nextLong());
             AbstractDungeon.potionRng = new Random(gen.random.nextLong());
 
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.aiRng = new Random(gen.random.nextLong());
+            AbstractDungeon.shuffleRng = new Random(gen.random.nextLong());
+            AbstractDungeon.cardRandomRng = new Random(gen.random.nextLong());
+            AbstractDungeon.miscRng = new Random(gen.random.nextLong());
+
             /*
             RngFix.logger.info("new seeds:\n");
 
@@ -50,7 +45,33 @@ public class seedFixPatch {
             RngFix.logger.info(AbstractDungeon.relicRng.random() + "\n");
             RngFix.logger.info(AbstractDungeon.potionRng.random() + "\n");
             */
+        }
+    }
 
+    @SpirePatch(
+            clz = AbstractDungeon.class,
+            method = "loadSeeds"
+    )
+
+    public static class loadPatch {
+        public static void Postfix(){
+
+            RngFix.logger.info("Generating unique seeds..."); // seed: 7 proves uniqueness
+            Random gen = new Random(Settings.seed);
+
+            AbstractDungeon.monsterRng = new Random(gen.random.nextLong());
+            AbstractDungeon.eventRng = new Random(gen.random.nextLong());
+            AbstractDungeon.merchantRng = new Random(gen.random.nextLong());
+            AbstractDungeon.cardRng = new Random(gen.random.nextLong());
+            AbstractDungeon.treasureRng = new Random(gen.random.nextLong());
+            AbstractDungeon.relicRng = new Random(gen.random.nextLong());
+            AbstractDungeon.potionRng = new Random(gen.random.nextLong());
+
+            AbstractDungeon.monsterHpRng = new Random(gen.random.nextLong());
+            AbstractDungeon.aiRng = new Random(gen.random.nextLong());
+            AbstractDungeon.shuffleRng = new Random(gen.random.nextLong());
+            AbstractDungeon.cardRandomRng = new Random(gen.random.nextLong());
+            AbstractDungeon.miscRng = new Random(gen.random.nextLong());
         }
     }
 }
